@@ -1,10 +1,20 @@
-#include <alesi.h>
+#include "app.h"
 
 int main(void)
 {
     AlesiStatus_t status;
 
     status = alesi_init();
+
+    if (status == ALESI_OK)
+    {
+        status = alesi_config_crossbar(app_crossbar_descs, app_crossbar_descs_cnt);
+    }
+
+    if (status == ALESI_OK)
+    {
+        status = alesi_new_hsm("hsm_test", hsm_test_init, 1U);
+    }
 
     if (status == ALESI_OK)
     {

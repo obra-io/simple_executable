@@ -34,6 +34,7 @@
 									<listOptionValue builtIn="false" value="DEBUG"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.784834495" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/alesi/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f746zg-hal/CMSIS/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f746zg-hal/CMSIS/device}&quot;"/>
@@ -55,9 +56,9 @@
 								</option>
 								<option id="gnu.c.link.option.libs.224266112" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="alesi-core"/>
-									<listOptionValue builtIn="false" value="alesi-pal-nucleo-f746zg"/>
-									<listOptionValue builtIn="false" value="alesi-codec-cli"/>
-									<listOptionValue builtIn="false" value="alesi-codec-sscp"/>
+									<listOptionValue builtIn="false" value="alesi-bsp-nucleo-f746zg"/>
+									<listOptionValue builtIn="false" value="alesi-cli"/>
+									<listOptionValue builtIn="false" value="alesi-j1939"/>
 									<listOptionValue builtIn="false" value="freertos"/>
 									<listOptionValue builtIn="false" value="freertos-plus-cli"/>
 									<listOptionValue builtIn="false" value="nucleo-f746zg-hal"/>
@@ -76,7 +77,6 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
@@ -137,7 +137,6 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
