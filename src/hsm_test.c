@@ -15,6 +15,8 @@ static AlesiStatus_t state__pressed2(AlesiStateControl_t * const control, AlesiE
         break;
 
         case APP_SIGNAL__PB0:
+            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), 0xAA, 6, ALESI_PUB_TYPE__CLR);
+
             ALESI_TRANSITION_STATE(state__pressed1);
         break;
 
@@ -37,6 +39,8 @@ static AlesiStatus_t state__pressed1(AlesiStateControl_t * const control, AlesiE
         break;
 
         case APP_SIGNAL__PB0:
+            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), 0xAA, 6, ALESI_PUB_TYPE__SET);
+
             ALESI_TRANSITION_STATE(state__pressed2);
         break;
 
@@ -74,19 +78,7 @@ static AlesiStatus_t state__on(AlesiStateControl_t * const control, AlesiEvent_t
         break;
 
         case APP_SIGNAL__PB0:
-            if (++buf[0] > '9')
-            {
-                buf[0] = '0';
-            }
-
-            if (--buf[1] < '0')
-            {
-                buf[1] = '9';
-            }
-
             alesi_publish_bytes(alesi_h_from_key(":bsp:display"), buf, 2);
-
-            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), 0xAA, 6, false);
 
             ALESI_TRANSITION_STATE(state__pressed1);
         break;
