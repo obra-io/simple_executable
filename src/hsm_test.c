@@ -1,12 +1,12 @@
 #include "app.h"
 
 static AlesiStatus_t state__on(AlesiStateControl_t * const control, AlesiEvent_t const event_h);
-static AlesiStatus_t state__pressed(AlesiStateControl_t * const control, AlesiEvent_t const event_h);
+static AlesiStatus_t state__pressed1(AlesiStateControl_t * const control, AlesiEvent_t const event_h);
+static AlesiStatus_t state__pressed2(AlesiStateControl_t * const control, AlesiEvent_t const event_h);
 
-static AlesiStatus_t state__pressed(AlesiStateControl_t * const control, AlesiEvent_t const event_h)
+static AlesiStatus_t state__pressed2(AlesiStateControl_t * const control, AlesiEvent_t const event_h)
 {
     AlesiStatus_t status = ALESI_STATE_IGNORED;
-    uint8_t out[1] = {0xAA};
 
     switch (event_h)
     {
@@ -15,9 +15,29 @@ static AlesiStatus_t state__pressed(AlesiStateControl_t * const control, AlesiEv
         break;
 
         case APP_SIGNAL__PB0:
-            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), out, 6, true);
+            ALESI_TRANSITION_STATE(state__pressed1);
+        break;
 
-            ALESI_TRANSITION_STATE(state__on);
+        default:
+            ALESI_RETURN_SUPER(state__on);
+        break;
+    }
+
+    return status;
+}
+
+static AlesiStatus_t state__pressed1(AlesiStateControl_t * const control, AlesiEvent_t const event_h)
+{
+    AlesiStatus_t status = ALESI_STATE_IGNORED;
+
+    switch (event_h)
+    {
+        case SYSTEM_SIGNAL__HSM_INIT:
+            status = ALESI_STATE_HANDLED;
+        break;
+
+        case APP_SIGNAL__PB0:
+            ALESI_TRANSITION_STATE(state__pressed2);
         break;
 
         default:
@@ -34,7 +54,6 @@ static AlesiStatus_t state__on(AlesiStateControl_t * const control, AlesiEvent_t
     static uint16_t jj;
     static uint16_t ii;
     static uint8_t buf[2] = {'0', '9'};
-    uint8_t out[1] = {0xAA};
 
     switch (event_h)
     {
@@ -67,9 +86,9 @@ static AlesiStatus_t state__on(AlesiStateControl_t * const control, AlesiEvent_t
 
             alesi_publish_bytes(alesi_h_from_key(":bsp:display"), buf, 2);
 
-            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), out, 6, false);
+            alesi_publish_bits(alesi_h_from_key(":bsp:dout"), 0xAA, 6, false);
 
-            ALESI_TRANSITION_STATE(state__pressed);
+            ALESI_TRANSITION_STATE(state__pressed1);
         break;
     }
 
