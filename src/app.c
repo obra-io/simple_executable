@@ -4,7 +4,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
 {
     {
         .signal_name = "in1",
-        .signal = APP_SIGNAL__DIN1,
+        .signal = SIGNAL__DIN1,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 0U,
@@ -13,7 +13,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in2",
-        .signal = APP_SIGNAL__DIN2,
+        .signal = SIGNAL__DIN2,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 1U,
@@ -22,7 +22,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in3",
-        .signal = APP_SIGNAL__DIN3,
+        .signal = SIGNAL__DIN3,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 2U,
@@ -31,7 +31,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in4",
-        .signal = APP_SIGNAL__DIN4,
+        .signal = SIGNAL__DIN4,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 3U,
@@ -40,7 +40,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in5",
-        .signal = APP_SIGNAL__DIN5,
+        .signal = SIGNAL__DIN5,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 4U,
@@ -49,7 +49,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in6",
-        .signal = APP_SIGNAL__DIN6,
+        .signal = SIGNAL__DIN6,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 5U,
@@ -58,7 +58,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in7",
-        .signal = APP_SIGNAL__DIN7,
+        .signal = SIGNAL__DIN7,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 6U,
@@ -67,7 +67,7 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "in8",
-        .signal = APP_SIGNAL__DIN8,
+        .signal = SIGNAL__DIN8,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 7U,
@@ -76,21 +76,20 @@ AlesiCrossbarPoint_t const crossbar_points_din[] =
     },
     {
         .signal_name = "pb0",
-        .signal = APP_SIGNAL__PB0,
+        .signal = SIGNAL__PB0,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 8U,
         .invert = false,
-        .level_trigger = false
+        .level_trigger = true
     }
-
 };
 
 AlesiCrossbarPoint_t const crossbar_points_dout[] =
 {
     {
         .signal_name = "out1",
-        .signal = APP_SIGNAL__DOUT1,
+        .signal = SIGNAL__DOUT1,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 0U,
@@ -99,7 +98,7 @@ AlesiCrossbarPoint_t const crossbar_points_dout[] =
     },
     {
         .signal_name = "out2",
-        .signal = APP_SIGNAL__DOUT2,
+        .signal = SIGNAL__DOUT2,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 1U,
@@ -108,7 +107,7 @@ AlesiCrossbarPoint_t const crossbar_points_dout[] =
     },
     {
         .signal_name = "out3",
-        .signal = APP_SIGNAL__DOUT3,
+        .signal = SIGNAL__DOUT3,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 2U,
@@ -117,7 +116,7 @@ AlesiCrossbarPoint_t const crossbar_points_dout[] =
     },
     {
         .signal_name = "out4",
-        .signal = APP_SIGNAL__DOUT4,
+        .signal = SIGNAL__DOUT4,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 3U,
@@ -126,7 +125,7 @@ AlesiCrossbarPoint_t const crossbar_points_dout[] =
     },
     {
         .signal_name = "out5",
-        .signal = APP_SIGNAL__DOUT5,
+        .signal = SIGNAL__DOUT5,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 4U,
@@ -135,7 +134,7 @@ AlesiCrossbarPoint_t const crossbar_points_dout[] =
     },
     {
         .signal_name = "out6",
-        .signal = APP_SIGNAL__DOUT6,
+        .signal = SIGNAL__DOUT6,
         .cmp_val = 0x1,
         .cmp_len = 1U,
         .cmp_offset = 5U,
