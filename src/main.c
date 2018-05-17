@@ -4,7 +4,18 @@ int main(void)
 {
     AlesiStatus_t status;
 
-    status = alesi_config_crossbar(app_crossbar_descs, app_crossbar_descs_cnt);
+    status = alesi_config_crossbar(app_crossbar_descs,
+            app_crossbar_descs_cnt);
+
+    if (status == ALESI_OK)
+    {
+        status = alesi_config_bridge(app_bridge_descs, app_bridge_descs_cnt);
+    }
+
+    if (status == ALESI_OK)
+    {
+        status = alesi_config_j1939(app_j1939_descs, app_j1939_descs_cnt);
+    }
 
     if (status == ALESI_OK)
     {
@@ -13,7 +24,7 @@ int main(void)
 
     if (status == ALESI_OK)
     {
-        status = alesi_new_hsm("hsm_test", hsm_test_init, 5U);
+        status = alesi_new_hsm("hsm_test", hsm_test_init, 5U, 0U);
     }
 
     if (status == ALESI_OK)
