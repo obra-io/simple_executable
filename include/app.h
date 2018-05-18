@@ -32,6 +32,9 @@ enum signal
     NUM_SIGNAL
 };
 
+#define APP__NUM_DIGITAL_INPUTS             (9U)
+#define APP__NUM_DIGITAL_OUTPUTS            (6U)
+
 AlesiStateHandler_t hsm_test_init(AlesiStateControl_t * const me, uint8_t const id);
 
 extern AlesiCrossbarDesc_t const app_crossbar_descs[];

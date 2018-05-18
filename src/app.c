@@ -168,17 +168,54 @@ size_t const app_crossbar_descs_cnt = ALESI_COUNT_OF(app_crossbar_descs);
 
 void translator__din_to_auxio(uint8_t * const dst, uint8_t const * const src)
 {
+    uint_fast8_t i;
+
     if ((dst != NULL) && (src != NULL))
     {
-        memcpy(dst, src, 8U);
+        memset(dst, 0xff, 4U);
+
+        static_assert(NUM_BYTES_IN_BITFIELD(APP__NUM_DIGITAL_INPUTS) < 4U);
+
+        for (i = 0; i < APP__NUM_DIGITAL_INPUTS; i++)
+        {
+            if (is_bitfield_set(src, i))
+            {
+                set_bitfield_bit(dst, (i * 2));
+                clr_bitfield_bit(dst, (i * 2) + 1);
+            }
+            else
+            {
+                clr_bitfield_bit(dst, (i * 2));
+                clr_bitfield_bit(dst, (i * 2) + 1);
+            }
+        }
     }
 }
 
 void translator__auxio_to_dout(uint8_t * const dst, uint8_t const * const src)
 {
+    uint_fast8_t i;
+    bool bit1;
+    bool bit2;
+
     if ((dst != NULL) && (src != NULL))
     {
-        memcpy(dst, src, 8U);
+        static_assert(NUM_BYTES_IN_BITFIELD(APP__NUM_DIGITAL_INPUTS) < 4U);
+
+        for (i = 0; i < APP__NUM_DIGITAL_OUTPUTS; i++)
+        {
+            bit1 = is_bitfield_set(src, (i * 2));
+            bit2 = is_bitfield_set(src, (i * 2) + 1);
+
+            if (bit1 && !bit2)
+            {
+                set_bitfield_bit(dst, i);
+            }
+            else
+            {
+                clr_bitfield_bit(dst, i);
+            }
+        }
     }
 }
 
@@ -208,13 +245,13 @@ AlesiJ1939Desc_t const app_j1939_descs[] =
     {
         .pg_key = "auxio1",
         .pgn = 65241U,
-        .size = 8U,
+        .size = 4U, /* Max 16 IO with 2-bits per. 32-bits total is 4-bytes */
         .rate = 100U
     },
     {
         .pg_key = "auxio2",
         .pgn = 65242U,
-        .size = 8U,
+        .size = 4U, /* Max 16 IO with 2-bits per. 32-bits total is 4-bytes */
         .rate = 100U
     }
 };
